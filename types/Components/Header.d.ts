@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ViewStyle } from 'react-native';
 declare type Props = {
     headerColor: string;

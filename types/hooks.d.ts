@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ErrorResponse, AccessToken, TwitterUser } from './types';
 import { Props as ModalProps } from './Components/Modal';
 declare type Props = {
