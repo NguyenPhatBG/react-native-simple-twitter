@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-  Modal,
-  SafeAreaView,
-} from 'react-native';
+import { SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
+import Modal from 'react-native-modal';
 
 /* npm */
 import WebView, { WebViewNavigation } from 'react-native-webview';
@@ -27,7 +25,7 @@ export type Props = {
 
 function TWLoginModal(props: Props & PackageProps) {
   return (
-    <Modal visible={props.visible} animationType="slide" onRequestClose={() => { }}>
+    <Modal isVisible={props.visible} animationIn="slideInUp">
       <SafeAreaView style={{ flex: 1, backgroundColor: props.headerColor }}>
         {props.renderHeader ? props.renderHeader({ onClose: props.onClosePress })
           : <Header textColor={props.textColor} headerColor={props.headerColor} onClose={props.onClosePress} closeText={props.closeText} />}

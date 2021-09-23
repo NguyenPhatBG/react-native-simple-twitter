@@ -1,111 +1,113 @@
 module.exports = {
-  "parser": "@typescript-eslint/parser",
-  "env": {
-    "es6": true,
-    "browser": true,
-    "jest": true
+  parser: '@typescript-eslint/parser',
+  env: {
+    es6: true,
+    browser: true,
+    jest: true,
   },
-  "extends": [
-    "airbnb",
+  extends: [
+    'airbnb',
   ],
-  "globals": {
-    "__DEV__": true
+  globals: {
+    __DEV__: true,
   },
-  "plugins": [
-    "@typescript-eslint"
+  plugins: [
+    '@typescript-eslint',
   ],
-  "settings": {
-    "import/extensions": [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx"
+  settings: {
+    'import/extensions': [
+      '.js',
+      '.jsx',
+      '.ts',
+      '.tsx',
     ],
-    "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
-    }
+    'import/resolver': {
+      node: {
+        extensions: [
+          '.js',
+          '.jsx',
+          '.ts',
+          '.tsx',
+        ],
+      },
+    },
   },
-  "rules": {
+  rules: {
     camelcase: [
-      "error",
+      'error',
       {
         allow: [
-          "^oauth_",
-          "^include_",
-          "^default_profile",
-          "^profile_",
-          "^withheld_",
-          "_count$",
-          "_url$",
-          "skip_status",
-          "screen_name",
-          "user_id",
-          "created_at",
-          "id_str"
-        ]
-      }
+          '^oauth_',
+          '^include_',
+          '^default_profile',
+          '^profile_',
+          '^withheld_',
+          '_count$',
+          '_url$',
+          'skip_status',
+          'screen_name',
+          'user_id',
+          'created_at',
+          'id_str',
+        ],
+      },
     ],
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
     'react/jsx-props-no-spreading': ['error', {
       html: 'enforce',
       custom: 'ignore',
       exceptions: [],
     }],
-    "max-len": [
+    'max-len': [
       1,
       140,
-      2
+      2,
     ],
-    "jsx-a11y/label-has-for": [2, {
-      "required": {
-        "some": ["nesting", "id"]
-      }
+    'jsx-a11y/label-has-for': [2, {
+      required: {
+        some: ['nesting', 'id'],
+      },
     }],
-    "react/prop-types": [
-      0
+    'react/prop-types': [
+      0,
     ],
-    "react/destructuring-assignment": 0,
-    "react/jsx-one-expression-per-line": [
+    'react/destructuring-assignment': 0,
+    'react/jsx-one-expression-per-line': [
       0,
       {
-        "allow": "literal"
-      }
+        allow: 'literal',
+      },
     ],
-    "import/no-extraneous-dependencies": [
-      "error",
+    'import/no-extraneous-dependencies': [
+      'error',
       {
-        "devDependencies": ["src/**", "__tests__/**"],
-        "optionalDependencies": false,
-        "peerDependencies": false
-      }
+        devDependencies: ['src/**', '__tests__/**'],
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
     ],
-    "react/jsx-filename-extension": [
-      "error",
+    'react/jsx-filename-extension': [
+      'error',
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
+        extensions: [
+          '.js',
+          '.jsx',
+          '.ts',
+          '.tsx',
+        ],
+      },
     ],
-    "import/extensions": [
-      "error", "always",
+    'import/extensions': [
+      'error', 'always',
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ]
-  }
-}
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+  },
+};

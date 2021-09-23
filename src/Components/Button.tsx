@@ -3,9 +3,10 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TouchableWithoutFeedback,
-  Modal,
   SafeAreaView,
 } from 'react-native';
+import PropTypes from 'prop-types';
+import Modal from 'react-native-modal';
 
 /* npm */
 import WebView from 'react-native-webview';
@@ -30,12 +31,15 @@ type Props = {
   onError: (e: ErrorResponse) => void;
   renderHeader: (props: any) => React.ReactElement<{}>;
   children: any;
-}
+};
 
 function TWLoginButton(props: Props) {
   const [isVisible, setVisible] = useState<boolean>(false);
   const [authURL, setAuthURL] = useState<string>('');
-  const [token, setToken] = useState<AccessToken>({ oauth_token: '', oauth_token_secret: '' });
+  const [token, setToken] = useState<AccessToken>({
+    oauth_token: '',
+    oauth_token_secret: '',
+  });
 
   let Component;
   switch (props.type) {
@@ -49,7 +53,9 @@ function TWLoginButton(props: Props) {
       Component = TouchableWithoutFeedback;
       break;
     default:
-      console.warn('TWLoginButton type must be TouchableOpacity or TouchableHighlight or TouchableWithoutFeedback');
+      console.warn(
+        'TWLoginButton type must be TouchableOpacity or TouchableHighlight or TouchableWithoutFeedback',
+      );
       return null;
   }
 
@@ -70,7 +76,9 @@ function TWLoginButton(props: Props) {
   };
 
   const onNavigationStateChange = async (webViewState: any) => {
-    const match = webViewState.url.match(/\?oauth_token=.+&oauth_verifier=(.+)/);
+    const match = webViewState.url.match(
+      /\?oauth_token=.+&oauth_verifier=(.+)/,
+    );
 
     if (match && match.length > 0) {
       setVisible(false);
@@ -109,35 +117,66 @@ function TWLoginButton(props: Props) {
         include_email: true,
       };
 
-      twitter.api<TwitterUser>('GET', 'account/verify_credentials.json', options).then((response) => {
-        props.onSuccess(response);
-      }).catch((err) => { props.onError(err); });
+      twitter
+        .api<TwitterUser>('GET', 'account/verify_credentials.json', options)
+        .then((response) => {
+          props.onSuccess(response);
+        })
+        .catch((err) => {
+          props.onError(err);
+        });
     }
   }, [token]);
 
   return (
     <Component {...props} onPress={onButtonPress}>
       {props.children}
-      <Modal visible={isVisible} animationType="slide" onRequestClose={() => { }}>
+      <Modal
+        isVisible={isVisible}
+        animationIn="fadeIn"
+      >
         <SafeAreaView style={{ flex: 1, backgroundColor: props.headerColor }}>
-          {props.renderHeader ? props.renderHeader({ onClose: onClosePress })
-            : <Header headerColor={props.headerColor} onClose={onClosePress} closeText={props.closeText} />}
-          <WebView source={{ uri: authURL }} onNavigationStateChange={onNavigationStateChange} />
+          {props.renderHeader ? (
+            props.renderHeader({ onClose: onClosePress })
+          ) : (
+            <Header
+              headerColor={props.headerColor}
+              onClose={onClosePress}
+              closeText={props.closeText}
+            />
+          )}
+          <WebView
+            source={{ uri: authURL }}
+            onNavigationStateChange={onNavigationStateChange}
+          />
         </SafeAreaView>
       </Modal>
     </Component>
   );
 }
 
+TWLoginButton.propTypes = {
+  type: PropTypes.string,
+  headerColor: PropTypes.string,
+  callbackUrl: PropTypes.string,
+  closeText: PropTypes.string,
+  onPress: PropTypes.func,
+  onGetAccessToken: PropTypes.func,
+  onClose: PropTypes.func,
+  onError: PropTypes.func,
+  renderHeader: PropTypes.func,
+  children: PropTypes.element,
+};
+
 TWLoginButton.defaultProps = {
   type: 'TouchableOpacity',
   headerColor: '#f7f7f7',
   callbackUrl: null,
   closeText: 'close',
-  onPress: () => { },
-  onGetAccessToken: () => { },
-  onClose: () => { },
-  onError: () => { },
+  onPress: () => {},
+  onGetAccessToken: () => {},
+  onClose: () => {},
+  onError: () => {},
   renderHeader: null,
   children: null,
 };

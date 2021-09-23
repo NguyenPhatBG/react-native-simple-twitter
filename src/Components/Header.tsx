@@ -7,6 +7,7 @@ import {
   Platform,
   ViewStyle,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,6 +40,14 @@ function Header(props: Props) {
     </View>
   );
 }
+
+Header.propTypes = {
+  headerColor: PropTypes.string,
+  textColor: PropTypes.string,
+  style: PropTypes.shape({}),
+  closeText: PropTypes.string,
+  onClose: PropTypes.func,
+};
 
 Header.defaultProps = {
   headerColor: '#f7f7f7',
