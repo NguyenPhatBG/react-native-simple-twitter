@@ -26,6 +26,7 @@
   "homepage": "https://github.com/watanabeyu/react-native-simple-twitter",
   "dependencies": {
     "crypto-js": "^4.1.1",
+    "prop-types": "^15.7.2",
     "react-native-webview": "^11.2.3"
   },
   "devDependencies": {

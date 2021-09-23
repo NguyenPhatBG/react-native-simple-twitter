@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { WebViewNavigation } from 'react-native-webview';
 declare type PackageProps = {
     visible: boolean;
@@ -16,10 +17,13 @@ export declare type Props = {
 };
 declare function TWLoginModal(props: Props & PackageProps): JSX.Element;
 declare namespace TWLoginModal {
+    var propTypes: {
+        headerColor: PropTypes.Requireable<string>;
+        closeText: PropTypes.Requireable<string>;
+    };
     var defaultProps: {
         headerColor: string;
         closeText: string;
-        renderHeader: null;
     };
 }
 export default TWLoginModal;
